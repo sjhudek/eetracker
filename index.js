@@ -6,13 +6,13 @@ dotenv.config();
 
 
 // Create Sequelize instance
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   dialect: "mysql",
   logging: false, // Disable logging of queries and results
 });
 
-const Department = sequelize.define("Department", {
+const Department = sequelize.define("department", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -24,7 +24,7 @@ const Department = sequelize.define("Department", {
   },
 });
 
-const Role = sequelize.define("Role", {
+const Role = sequelize.define("role", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -36,7 +36,7 @@ const Role = sequelize.define("Role", {
   },
 });
 
-const Employee = sequelize.define("Employee", {
+const Employee = sequelize.define("employee", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
