@@ -1,39 +1,62 @@
 ## User Story
-* Notes Organizer for Small Business Owners
+* Employee Tracker
 
-* Hey there, fellow small business owner! We know how chaotic things can get when you're juggling multiple tasks and ideas all at once. That's why we've got just the thing for you: a super handy Notes Organizer!
+* As a business owner, I want to effortlessly manage my company's departments, roles, and employees, enabling me to stay organized and plan my business efficiently. 
 
 ## Acceptance Criteria
-- You're good to go when you've initialized a Git repository by running git init at the root of your existing project.
-- Once you've tweaked the PORT variable in server.js as per the Heroku documentation, consider it checked off.
-- Create a new Heroku app using the Heroku CLI and mark it as done.
-- Confirm that the Heroku remote URL was added by using the right Git command.
-- Add and commit all your files, push them to Heroku, and consider this step complete.
-- Finally, run heroku open to confirm that your application was successfully deployed.
+- GIVEN a command-line application that accepts user input
+- WHEN I start the application
+- THEN I am presented with the following options:
+  - View all departments
+  - View all roles
+  - View all employees
+  - Add a department
+  - Add a role
+  - Add an employee
+  - Update an employee role
+- WHEN I choose to view all departments
+- THEN I am presented with a formatted table showing department names and department ids
+- WHEN I choose to view all roles
+- THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
+- WHEN I choose to view all employees
+- THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
+- WHEN I choose to add a department
+- THEN I am prompted to enter the name of the department, and that department is added to the database
+- WHEN I choose to add a role
+- THEN I am prompted to enter the name, salary, and department for the role, and that role is added to the database
+- WHEN I choose to add an employee
+- THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
+- WHEN I choose to update an employee role
+- THEN I am prompted to select an employee to update and their new role, and this information is updated in the database
 
 ## GitHub Repo
-* https://github.com/sjhudek/notetaker/
+* https://github.com/sjhudek/eetracker
 
 ## Heroku URL
-* https://dashboard.heroku.com/apps/damp-forest-17238
 
 ## Resources
 - Instructor assistance and feedback
 
 - Tutoring session
 
-- https://www.youtube.com/watch?v=BDo1lgaZuII
+- TABLES
 
-- https://github.com/CaitlinSwickard/Note-taker-app
+ - Videos
 
-- https://www.geeksforgeeks.org/how-to-build-note-taking-application-using-node-js/
+- https://www.youtube.com/watch?v=Hej48pi_lOc
 
-- https://medium.com/swlh/node-js-module-system-part-1-note-taking-app-78b642242370
+- https://www.educba.com/what-is-a-mysql-schema/
 
-- https://www.linode.com/content/code-a-note-taking-app-from-scratch-full-stack-html-css-javascript-node-js/
+- https://www.youtube.com/watch?v=10vOabgoJfM
 
-- https://blog.devgenius.io/learning-nodejs-by-creating-a-notes-app-9eafc4223306
+- https://www.youtube.com/watch?v=1aXZQcG2Y6I
 
-- https://www.studytonight.com/post/notepad-app-using-nodejs-mongodb-and-express
 
-- https://morioh.com/p/a1cd78288d90
+- Sequelize Videos
+
+- https://www.youtube.com/watch?v=3qlnR9hK-lQ
+
+- https://www.youtube.com/watch?v=YNyGD4rakmc
+
+- https://youtube.com/playlist?list=PLkqiWyX-_Lov8qmMOVn4SEQwr9yOjNn3f
+
