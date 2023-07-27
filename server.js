@@ -1,7 +1,7 @@
 import { app } from "./app.js"; // Import the 'app' instance from app.js
-
-// Import and require mysql2
-import mysql from 'mysql2';
+import { Department, Role, Employee } from "./index.js";
+const database = require("./database");
+const sequelize = database.sequelize;
 
 const PORT = process.env.PORT || 3001;
 
@@ -9,29 +9,31 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Connect to database
-const db = mysql.createConnection(
-  {
-    host: 'localhost',
-    // MySQL username,
-    user: 'root',
-    // MySQL password
-    password: '030119Kent**',
-    database: 'employee_tracker'
-  },
-  console.log(`Connected to the employee_tracker database.`)
-);
-
-// Query database
-db.query('SELECT * FROM employee_tracker', function (err, results) {
-  console.log(results);
-});
-
 // Default response for any other request (Not Found)
 app.use((req, res) => {
   res.status(404).end();
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Start the server and database connection
+async function startServer() {
+  try {
+    // Sync models with database
+    await sequelize.authenticate();
+    await sequelize.sync();
+
+    console.log(`Connected to the database.`);
+
+    // Call the function to start the application
+    await startApp();
+
+    // Start the Express server
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+  }
+}
+
+// Call the function to start the server
+startServer();

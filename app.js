@@ -1,5 +1,7 @@
 import express from "express";
 export const app = express();
+const database = require("./database");
+const sequelize = database.sequelize;
 
 // import { getAllDepartments, getDepartmentById } from "./database.js";
 import * as database from "./database.js";
