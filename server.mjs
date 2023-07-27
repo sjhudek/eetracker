@@ -1,9 +1,9 @@
-const express = require('express');
+import { app } from "./app.js"; // Import the 'app' instance from app.js
+
 // Import and require mysql2
-const mysql = require('mysql2');
+import mysql from 'mysql2';
 
 const PORT = process.env.PORT || 3001;
-const app = express();
 
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
@@ -16,14 +16,14 @@ const db = mysql.createConnection(
     // MySQL username,
     user: 'root',
     // MySQL password
-    password: '',
-    database: 'classlist_db'
+    password: '030119Kent**',
+    database: 'employee_tracker'
   },
-  console.log(`Connected to the classlist_db database.`)
+  console.log(`Connected to the employee_tracker database.`)
 );
 
 // Query database
-db.query('SELECT * FROM students', function (err, results) {
+db.query('SELECT * FROM employee_tracker', function (err, results) {
   console.log(results);
 });
 

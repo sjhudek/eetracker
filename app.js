@@ -1,6 +1,9 @@
 import express from "express";
+export const app = express();
 
-import { getAllDepartments, getDepartmentById } from "./database.js";
+// import { getAllDepartments, getDepartmentById } from "./database.js";
+import * as database from "./database.js";
+
 
 import {
   getAllRole,
@@ -23,6 +26,10 @@ import {
 const app = express();
 
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
 
 app.get("/", (req, res) => {
     res.send("Welcome to the Employee Tracker API!");
@@ -95,7 +102,7 @@ app.get("/employee/last_name/:last_name", async (req, res) => {
 });
 
 app.get("/employee/role_id/:", async (req, res) => {
-  const department_id = req.params.role_id;
+  const department_id = req.params.id;
   const employee = await getEmployeeByRoleId(role_id);
   res.send(employee);
 });
