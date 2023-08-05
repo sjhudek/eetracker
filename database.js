@@ -1,22 +1,25 @@
 const mysql = require("mysql2");
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("./database");
+require("dotenv").config();
 
-const sequelize = new Sequelize({
-  host: process.env.DB_HOST,
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  dialect: "mysql", // Change this to your database dialect if different
+// const sequelize = new Sequelize({
+//   host: process.env.DB_HOST,
+//   username: process.env.DB_USERNAME,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_DATABASE,
+//   dialect: "mysql",
+// });
+
+const sequelize = new Sequelize("employee_tracker", "root", "030119Kent**", {
+  host: "localhost",
+  dialect: "mysql",
+  define: {
+    underscored: true, // Add this line
+  },
 });
 
-const Department = require("./models/Department");
 
-// models/Department.js
-const { Sequelize, DataTypes } = require("sequelize");
- 
-
-const Department = sequelize.define("Department", {
+const Department = sequelize.define("department", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -28,8 +31,6 @@ const Department = sequelize.define("Department", {
     allowNull: false,
   },
 });
-
-module.exports = Department;
 
 const pool = mysql
   .createPool({
@@ -47,7 +48,7 @@ async function getAllDepartments() {
     return departments;
   } catch (error) {
     console.error("Error retrieving departments:", error);
-    throw error; // Rethrow the error to handle it in the caller function
+    throw error; 
   }
 }
 
@@ -155,6 +156,7 @@ async function createRole(title, salary, department_id) {
 
 module.exports = {
   sequelize,
+  Department,
   getAllDepartments,
   getDepartmentById,
   createEmployee,

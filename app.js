@@ -25,8 +25,6 @@ import {
   createEmployee,
 } from "./database.js";
 
-const app = express();
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -92,7 +90,7 @@ app.get("/employee/:id", async (req, res) => {
 });
 
 app.get("/employee/first_name/:first_name", async (req, res) => {
-  const title = req.params.first_name;
+  const first_name = req.params.first_name;
   const employee = await getEmployeeByFirstName(first_name);
   res.send(employee);
 });
@@ -116,7 +114,7 @@ app.get("/employee/manager_id/:manager_id", async (req, res) => {
   });
 
 app.post("/employee", async (req, res) => {
-  const { title, salary, department_id } = req.body;
+  const { firstName, lastName, role_id, managerId } = req.body;
   const employee = await createEmployee(title, salary, department_id);
   res.status(201).send(employee);
 });

@@ -1,126 +1,6 @@
+const { Department, Role, Employee } = require("./database.js");
 const inquirer = require("inquirer");
-const { Sequelize, DataTypes } = require("sequelize");
-const database = require("./database.js");
-const dotenv = require("dotenv");
-
-dotenv.config();
-
-// Create Sequelize instance
-const sequelize = new Sequelize(
-  process.env.DB_DATABASE,
-  process.env.DB_USERNAME,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    dialect: "mysql",
-    logging: false, // Disable logging of queries and results
-  }
-);
-
-const Department = sequelize.define("department", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
-
-const Role = sequelize.define("role", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  title: {
-    // Make sure 'title' is included as a property
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  salary: {
-    // Make sure 'salary' is included as a property
-    type: DataTypes.DECIMAL(10, 2), // Assuming it's a decimal with 2 decimal places
-    allowNull: false,
-  },
-});
-
-const Employee = sequelize.define("employee", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  firstName: {
-    // Make sure 'firstName' is included as a property
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  lastName: {
-    // Make sure 'lastName' is included as a property
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
-
-// Associations between models (if not already defined)
-Department.hasMany(Role, { foreignKey: "department_id" });
-Role.belongsTo(Department, { foreignKey: "department_id" });
-
-Role.hasMany(Employee, { foreignKey: "role_id" });
-Employee.belongsTo(Role, { foreignKey: "role_id" });
-
-Employee.belongsTo(Employee, { as: "manager", foreignKey: "manager_id" });
-
-// Sync models with database
-sequelize
-  .sync()
-  .then(() => {
-    // console.log("Database & tables created!");
-    startApp();
-  })
-  .catch((error) => {
-    console.error("Error creating database tables:", error);
-  });
-
-let databaseCreated = false;
-
-// Start the application
-// async function startApp() {
-//   try {
-//     // Sync models with database
-//     await sequelize.authenticate();
-//     await sequelize.sync();
-
-//     if (!databaseCreated) {
-//       // console.log("Database & tables created!");
-//       databaseCreated = true;
-//       displayOptions(); // Move this line here
-//     }
-//   } catch (error) {
-//     console.error("Error connecting to the database:", error);
-//   }
-// }
-
-// Start the application
-async function startApp() {
-  try {
-    // Sync models with database
-    await sequelize.authenticate();
-    await sequelize.sync();
-
-    if (!databaseCreated) {
-      // console.log("Database & tables created!");
-      databaseCreated = true;
-      displayOptions(); // Move this line here
-    }
-  } catch (error) {
-    console.error("Error connecting to the database:", error);
-  }
-}
-
+const cTable = require('console.table');
 
 // Display options menu
 function displayOptions() {
@@ -204,6 +84,7 @@ function viewAllDepartments() {
       displayOptions();
     });
 }
+
 
 
 // Option 2: View all roles
@@ -376,6 +257,18 @@ function updateEmployeeRole() {
           displayOptions();
         });
     });
+}
+
+async function startApp() {
+  try {
+    // Sync the defined models with the database
+    await sequelize.sync();
+
+    // Display the options menu
+    displayOptions();
+  } catch (error) {
+    console.error("Error synchronizing database:", error);
+  }
 }
 
 startApp();
