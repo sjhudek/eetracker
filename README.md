@@ -39,9 +39,7 @@
 
 - Tutoring session
 
-- TABLES
-
- - Videos
+- Videos
 
 - https://www.youtube.com/watch?v=Hej48pi_lOc
 
@@ -50,13 +48,4 @@
 - https://www.youtube.com/watch?v=10vOabgoJfM
 
 - https://www.youtube.com/watch?v=1aXZQcG2Y6I
-
-
-- Sequelize Videos
-
-- https://www.youtube.com/watch?v=3qlnR9hK-lQ
-
-- https://www.youtube.com/watch?v=YNyGD4rakmc
-
-- https://youtube.com/playlist?list=PLkqiWyX-_Lov8qmMOVn4SEQwr9yOjNn3f
 
