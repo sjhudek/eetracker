@@ -80,13 +80,27 @@ function viewAllDepartments() {
   const query = "SELECT * FROM department";
   connection.query(query, (err, rows) => {
     if (err) {
-      console.error("Error retrieving departments:", err);
+      console.error("Error retrieving departments", err);
     } else {
       console.table(rows);
     }
     displayOptions();
   });
 }
+
+// Option 1: View all roles
+function viewAllRole() {
+  const query = "SELECT * FROM department";
+  connection.query(query, (err, rows) => {
+    if (err) {
+      console.error("Error retrieving roles", err);
+    } else {
+      console.table(rows);
+    }
+    displayOptions();
+  });
+}
+
 
 async function startApp() {
   try {
