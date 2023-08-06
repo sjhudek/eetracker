@@ -88,9 +88,9 @@ function viewAllDepartments() {
   });
 }
 
-// Option 1: View all roles
+// Option 2: View all roles
 function viewAllRole() {
-  const query = "SELECT * FROM department";
+  const query = "SELECT * FROM role";
   connection.query(query, (err, rows) => {
     if (err) {
       console.error("Error retrieving roles", err);
