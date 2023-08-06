@@ -114,6 +114,30 @@ function viewAllEmployee() {
   });
 }
 
+// Option 4: Add a department
+function addDepartment() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "departmentName",
+        message: "Enter the name of the department: ",
+      },
+    ])
+    .then((answers) => {
+      const { departmentName } = answers;
+      const query = "INSERT INTO department (name) VALUES (?)";
+      connection.query(query, [departmentName], (err, result) => {
+        if (err) {
+          console.error("Error adding department", err);
+        } else {
+          console.log("Department added successfully!");
+        }
+        displayOptions();
+      });
+    });
+}
+
 async function startApp() {
   try {
     // Connect to the database
