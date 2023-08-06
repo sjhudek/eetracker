@@ -65,7 +65,7 @@ function getUserInput() {
           break;
         case "8":
           console.log("Exiting the application...");
-          sequelize.close(); // Close the database connection before quitting
+          connection.end();
           break;
         default:
           console.log("Invalid option!");
@@ -163,7 +163,6 @@ function addRole() {
 }
 
 // Option 6: Add employee
-// Option 6: Add employee
 function addEmployee() {
   inquirer
     .prompt([
@@ -192,7 +191,58 @@ function addEmployee() {
     });
 }
 
-
+// Option 7: Update employee role
+function updateEmployeeRole() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "firstName",
+        message: "Enter the first name of the employee: ",
+      },
+      {
+        type: "input",
+        name: "lastName",
+        message: "Enter the last name of the employee: ",
+      },
+      {
+        type: "input",
+        name: "roleName",
+        message: "Enter the name of the new role: ",
+      },
+    ])
+    .then((answers) => {
+      const { firstName, lastName, roleName } = answers;
+      const findRoleQuery = "SELECT id FROM role WHERE title = ?";
+      connection.query(findRoleQuery, [roleName], (err, roleResults) => {
+        if (err) {
+          console.error("Error retrieving role", err);
+          displayOptions();
+        } else {
+          if (roleResults.length === 0) {
+            console.error(`Role '${roleName}' not found.`);
+            displayOptions();
+          } else {
+            const newRoleId = roleResults[0].id;
+            const updateQuery =
+              "UPDATE employee SET role_id = ? WHERE first_name = ? AND last_name = ?";
+            connection.query(
+              updateQuery,
+              [newRoleId, firstName, lastName],
+              (err, result) => {
+                if (err) {
+                  console.error("Error updating employee role", err);
+                } else {
+                  console.log("Employee role updated successfully!");
+                }
+                displayOptions();
+              }
+            );
+          }
+        }
+      });
+    });
+}
 
 async function startApp() {
   try {
