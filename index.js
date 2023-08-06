@@ -139,7 +139,6 @@ function addDepartment() {
 }
 
 // Option 5: Add a role
-// Option 5: Add a role
 function addRole() {
   inquirer
     .prompt([
@@ -150,7 +149,7 @@ function addRole() {
       },
     ])
     .then((answers) => {
-      const { roleName } = answers; // Use roleName instead of departmentName
+      const { roleName } = answers;
       const query = "INSERT INTO role (title) VALUES (?)";
       connection.query(query, [roleName], (err, result) => {
         if (err) {
@@ -162,6 +161,37 @@ function addRole() {
       });
     });
 }
+
+// Option 6: Add employee
+// Option 6: Add employee
+function addEmployee() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "firstName",
+        message: "Enter the first name of the employee: ",
+      },
+      {
+        type: "input",
+        name: "lastName",
+        message: "Enter the last name of the employee: ",
+      },
+    ])
+    .then((answers) => {
+      const { firstName, lastName } = answers;
+      const query = "INSERT INTO employee (first_name, last_name) VALUES (?, ?)";
+      connection.query(query, [firstName, lastName], (err, result) => {
+        if (err) {
+          console.error("Error adding employee", err);
+        } else {
+          console.log("Employee added successfully!");
+        }
+        displayOptions();
+      });
+    });
+}
+
 
 
 async function startApp() {
