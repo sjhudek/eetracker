@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +14,9 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "inquirer": "^8.2.5",
+    "mysql": "^2.18.1",
     "mysql2": "^3.5.2",
     "sequelize": "^6.32.1"
-  }
+  },
+  "description": "* Employee Tracker"
 }
