@@ -32,14 +32,18 @@
 ## GitHub Repo
 * https://github.com/sjhudek/eetracker
 
-## Heroku URL
-
 ## Resources
 - Instructor assistance and feedback
 
 - Tutoring session
 
-- Videos
+- Resources
+
+- https://webdev.slides.com/coltsteele/mysql-105#/33
+
+- https://www.sammeechward.com/connect-to-mysql-from-node
+
+- https://www.devart.com/dbforge/mysql/studio/show-tables-list-in-mysql.html
 
 - https://www.youtube.com/watch?v=Hej48pi_lOc
 
