@@ -3,15 +3,17 @@ const database = require("./database.js");
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 const cTable = require("console.table");
-  
+require('dotenv').config();
+
+const dbConfig = {
+  host: process.env.DB_LOCALHOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+};
+
 // Create a MySQL connection
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "030119Kent**",
-  database: "employee_tracker",
-});
+const connection = mysql.createConnection(dbConfig);
 
 // Display options menu
 function displayOptions() {
