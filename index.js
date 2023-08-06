@@ -101,6 +101,18 @@ function viewAllRole() {
   });
 }
 
+// Option 3: View all Employees
+function viewAllEmployee() {
+  const query = "SELECT * FROM employee";
+  connection.query(query, (err, rows) => {
+    if (err) {
+      console.error("Error retrieving employees", err);
+    } else {
+      console.table(rows);
+    }
+    displayOptions();
+  });
+}
 
 async function startApp() {
   try {
