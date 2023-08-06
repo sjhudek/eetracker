@@ -138,6 +138,32 @@ function addDepartment() {
     });
 }
 
+// Option 5: Add a role
+// Option 5: Add a role
+function addRole() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "roleName",
+        message: "Enter the name of the role: ",
+      },
+    ])
+    .then((answers) => {
+      const { roleName } = answers; // Use roleName instead of departmentName
+      const query = "INSERT INTO role (title) VALUES (?)";
+      connection.query(query, [roleName], (err, result) => {
+        if (err) {
+          console.error("Error adding role", err);
+        } else {
+          console.log("Role added successfully!");
+        }
+        displayOptions();
+      });
+    });
+}
+
+
 async function startApp() {
   try {
     // Connect to the database
