@@ -32,12 +32,17 @@
 ## GitHub Repo
 * https://github.com/sjhudek/eetracker
 
+## Demo on YouTube
+https://youtu.be/0McSQCIPzdA
+
 ## Resources
 - Instructor assistance and feedback
 
 - Tutoring session
 
 - Resources
+
+- https://www.tutorialspoint.com/mysql/mysql-select-database.htm
 
 - https://webdev.slides.com/coltsteele/mysql-105#/33
 
