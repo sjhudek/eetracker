@@ -2,24 +2,25 @@ const mysql = require("mysql2");
 const { Sequelize, DataTypes } = require("sequelize");
 require("dotenv").config();
 
-// const sequelize = new Sequelize({
-//   host: process.env.DB_HOST,
-//   username: process.env.DB_USERNAME,
-//   password: process.env.DB_PASSWORD,
-//   database: process.env.DB_DATABASE,
+const pool = mysql
+  .createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+  })
+  .promise();
+
+// const sequelize = new Sequelize("employee_tracker", "root", "030119Kent**", {
+//   host: "localhost",
 //   dialect: "mysql",
+//   define: {
+//     underscored: true, // Add this line
+//   },
 // });
 
-const sequelize = new Sequelize("employee_tracker", "root", "030119Kent**", {
-  host: "localhost",
-  dialect: "mysql",
-  define: {
-    underscored: true, // Add this line
-  },
-});
 
-
-const Department = sequelize.define("department", {
+const Department = {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -30,16 +31,7 @@ const Department = sequelize.define("department", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-});
-
-const pool = mysql
-  .createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-  })
-  .promise();
+};
 
 // Function to get all departments
 async function getAllDepartments() {
@@ -155,7 +147,6 @@ async function createRole(title, salary, department_id) {
 }
 
 module.exports = {
-  sequelize,
   Department,
   getAllDepartments,
   getDepartmentById,
